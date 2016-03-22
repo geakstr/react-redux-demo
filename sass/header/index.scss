@@ -1,0 +1,34 @@
+@import "./search-widget.scss";
+@import "./profile-widget.scss";
+
+.header {
+  padding: 18px 44px;
+  background: #434F6C;
+  color: #A6ACBA;
+  line-height: 40px;
+  font-size: 12px;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+  flex: 1;
+  font-size: 18px;
+
+  strong {
+    color: #E3E8EA;
+  }
+}
+
+.header__search-widget {
+  flex: 1;
+  text-align: center;
+}
+
+.header__profile-widget {
+  flex: 1;
+  text-align: right;
+}

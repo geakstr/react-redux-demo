@@ -1,0 +1,30 @@
+.profile-widget_photo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-widget__photo {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  vertical-align: top;
+  background: #3B455A;
+  border-radius: 100px;
+}
+
+.profile-widget__notify {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: #FF2B6A;
+  border-radius: 50px;
+  content: "dassad";
+}
+
+.profile-widget__name {
+  margin-left: 11px;
+  color: #E3E8EA;
+}
