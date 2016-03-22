@@ -1,0 +1,68 @@
+.cards__item-info {
+  position: relative;
+  padding: 44px 11px;
+  overflow-x: hidden;
+  background: #F3F8F7;
+  text-align: center;
+}
+
+.card-info__online {
+  $color: #07BB6F;
+
+  display: block;
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  width: 10px;
+  height: 10px;
+  background: $color;
+  border-radius: 50px;
+  z-index: 1;
+
+  &:before {
+    display: block;
+    position: absolute;
+    top: -1px;
+    left: -105px;
+    width: 100px;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: right;
+    color: $color;
+    content: "online";
+  }
+}
+
+.card-info__hired {
+  display: block;
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  width: 100px;
+  font-size: 10px;
+  line-height: 10px;
+  text-align: left;
+  color: #324666;
+  z-index: 1;
+}
+
+.card-info__photo {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 16px auto;
+  border-radius: 140px;
+  background: #E8EEF7;
+}
+
+.card-info__username {
+  font-size: 18px;
+  font-weight: 100;
+  margin-bottom: 5px;
+  color: #324666;
+}
+
+.card-info__spec {
+  font-size: 12px;
+  color: #B7C1CD;
+}

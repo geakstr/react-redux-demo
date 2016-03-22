@@ -1,0 +1,33 @@
+.cards__item-meta {
+  position: relative;
+  display: flex;
+  padding: 16px 22px;
+  overflow-x: hidden;
+  background: #E8EEF7;
+  font-size: 12px;
+  border-bottom: 1px solid #666;
+}
+
+.card-meta__item-title {
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: #697493;
+}
+
+.card-meta__item-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #697493;
+}
+
+.card-meta__item_experience {
+  width: 43%;
+}
+
+.card-meta__item_rate {
+  width: 29%;
+}
+
+.card-meta__item_function {
+  width: 28%;
+}

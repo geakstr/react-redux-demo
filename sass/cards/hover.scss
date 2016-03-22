@@ -1,0 +1,32 @@
+.cards__item-hover {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  font-size: 12px;
+  text-align: center;
+  color: #EEEEEF;
+  background-color: rgba(59, 69, 90, 0.9);
+}
+
+.card-hover__content-wrapper {
+  flex: 1;
+}
+
+.card-hover__username {
+  margin: 5px 0 22px 0;
+  font-size: 18px;
+}
+
+.card-hover__button {
+  width: 110px;
+}
+
+.card-hover__button-more {
+  padding: 0;
+  margin-left: 11px;
+}

@@ -18,3 +18,9 @@ export default function CardMeta(props) {
     </div>
   );
 }
+
+CardMeta.propTypes = {
+  experience: React.PropTypes.string,
+  rate: React.PropTypes.string,
+  func: React.PropTypes.string
+};

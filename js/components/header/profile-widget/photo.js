@@ -8,3 +8,8 @@ export default function Photo(props) {
     </span>
   );
 }
+
+Photo.propTypes = {
+  url: React.PropTypes.string,
+  notify: React.PropTypes.bool
+};

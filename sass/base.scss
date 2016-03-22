@@ -9,6 +9,8 @@ body {
 
 button {
   outline: none;
+  font-size: 12px;
+  font-weight: 100;
   cursor: pointer;
 }
 
@@ -16,4 +18,73 @@ button {
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 44px;
+}
+
+.ok-button, .default-button, .danger-button {
+  padding: 0 22px;
+  color: #F4F5F6;
+  border-radius: 16px;
+}
+
+.ok-button {
+  $bgcolor: #00B2F6;
+
+  background: $bgcolor;
+  line-height: 33px;
+  border: none;
+
+  &:hover {
+    background-color: darken($bgcolor, 5%);
+  }
+
+  &:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.danger-button {
+  $bgcolor: #FF2B6A;
+
+  background: $bgcolor;
+  line-height: 33px;
+  border: none;
+
+  &:hover {
+    background-color: darken($bgcolor, 5%);
+  }
+
+  &:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.text-button {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: #A6ACBA;
+
+  &:hover {
+    color: white;
+  }
+
+  &:active {
+    color: #ccc;
+  }
+}
+
+.default-button {
+  background: transparent;
+  border: 2px solid #F4F5F6;
+  line-height: 29px;
+  font-weight: 700;
+
+  &:hover {
+    border-color: #DDD;
+    color: #DDD;
+  }
+
+  &:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  }
 }

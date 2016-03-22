@@ -11,3 +11,9 @@ export default function ProfileWidget(props) {
     </div>
   );
 }
+
+ProfileWidget.propTypes = {
+  photo: React.PropTypes.string,
+  notify: React.PropTypes.bool,
+  username: React.PropTypes.string
+};

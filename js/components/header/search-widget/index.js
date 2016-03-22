@@ -1,7 +1,7 @@
 import React from "react";
 
-import FindButton from "./findButton";
-import InviteButton from "./inviteButton";
+import FindButton from "./find-button";
+import InviteButton from "./invite-button";
 
 export default function SearchWidget(props) {
   return (

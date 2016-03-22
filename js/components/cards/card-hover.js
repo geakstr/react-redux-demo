@@ -1,0 +1,26 @@
+import React from "react";
+
+import HireButton from "./hire-button";
+import MoreButton from "./more-button";
+
+export default function CardHover(props) {
+  const {username, toggleHire, hired} = props;
+
+  const type = hired ? "dismiss" : "hire";
+
+  return (
+    <div className="cards__item-hover card-hover">
+      <div className="card-hover__content-wrapper">
+        <div>Do you want to {type}</div>
+        <div className="card-hover__username">{username}?</div>
+        <div><HireButton onClick={toggleHire} hired={hired} /><MoreButton /></div>
+      </div>
+    </div>
+  );
+}
+
+CardHover.propTypes = {
+  hired: React.PropTypes.bool,
+  username: React.PropTypes.string,
+  toggleHire: React.PropTypes.func
+};
