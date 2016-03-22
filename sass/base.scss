@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #3B455A;
   font-family: Helvetica, Arial, sans-serif;
@@ -9,6 +13,7 @@ button {
 }
 
 .wrapper {
-  max-width: 960px;
+  max-width: 1024px;
   margin: 0 auto;
+  padding: 0 44px;
 }
