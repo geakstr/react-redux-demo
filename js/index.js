@@ -10,7 +10,8 @@ import "../sass/style.scss";
 
 import createStore from "./store";
 
-import AppContainer from "containers/app";
+import CardsContainer from "containers/cards";
+import UserContainer from "containers/user";
 
 const store = createStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
@@ -18,7 +19,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={AppContainer} />
+      <Route path="/" component={CardsContainer} />
+      <Route path="/users/:id" component={UserContainer} />
     </Router>
   </Provider>, document.getElementById("app")
 );

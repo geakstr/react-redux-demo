@@ -88,3 +88,30 @@ button {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
   }
 }
+
+.appear-animation-appear {
+  opacity: 0.01;
+}
+
+.appear-animation-appear.appear-animation-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}

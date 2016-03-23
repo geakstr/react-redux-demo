@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CardInfo(props) {
   const {username, photo, spec, online, hired} = props;
-  
+
   return (
     <div className="cards__item-info card-info">
       {hired ? <i className="card-info__hired">✓ Hired</i> : null}

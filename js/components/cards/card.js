@@ -7,17 +7,12 @@ import CardMeta from "./card-meta";
 export default class Card extends React.Component {
   static propTypes = {
     user: React.PropTypes.object,
-    actions: React.PropTypes.objectOf(React.PropTypes.func)
+    actions: React.PropTypes.object
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isHovering: false,
-      hired: props.user.hired
-    };
-  }
+  state = {
+    isHovering: false
+  };
 
   onMouseEnter = () => {
     this.setState({
@@ -31,25 +26,16 @@ export default class Card extends React.Component {
     });
   };
 
-  toggleHire(callback) {
-    this.setState({
-      hired: !this.state.hired
-    });
-
-    callback();
-  }
-
   render() {
     const {isHovering} = this.state;
-    const {id, username, photo, spec, experience, rate, func, online} = this.props.user;
-    const {hired} = this.state;
-    const toggleHire = this.toggleHire.bind(this, this.props.actions.toggleHire.bind(null, id));
+    const {id, username, photo, spec, experience, rate, func, hired, online} = this.props.user;
+    const {toggleHire} = this.props.actions;
 
     return (
       <div className="cards__item-wrapper" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-        {isHovering ? <CardHover username={username} hired={hired} toggleHire={toggleHire} /> : null}
+        {isHovering ? <CardHover id={id} username={username} hired={hired} toggleHire={toggleHire.bind(null, id)} /> : null}
         <CardInfo username={username} spec={spec} online={online} hired={hired} photo={photo} />
-        <CardMeta experience={`${experience} years`} rate={`${rate}%`} func={func} />
+        <CardMeta experience={experience} rate={rate} func={func} />
       </div>
     );
   }

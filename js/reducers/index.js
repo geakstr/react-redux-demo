@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
-import users from "./users";
+import cards from "./cards";
+import user from "./user";
 
 export default combineReducers({
-  users,
+  user,
+  users: cards,
   routing: routerReducer
 });

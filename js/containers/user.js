@@ -3,33 +3,31 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import HeaderContainer from "./header";
-import Cards from "../components/cards/";
+import User from "../components/user/";
 import * as actions from "../actions/users";
 
-export default class CardsContainer extends React.Component {
+export default class UserContainer extends React.Component {
   static propTypes = {
-    users: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object.isRequired,
     actions: React.PropTypes.object.isRequired
   };
 
   componentDidMount() {
-    this.props.actions.fetchUsers("/");
+    this.props.actions.fetchUser("/", this.props.params.id);
   }
 
   render() {
-    const {users, actions} = this.props;
-
     return (
       <div>
         <HeaderContainer />
-        <Cards users={users} actions={actions} />
+        <User user={this.props.user} toggleHire={this.props.actions.toggleHire} />
       </div>
     );
   }
 }
 
-function mapStateToProps({ users }) {
-  return {users};
+function mapStateToProps({ user }) {
+  return {user};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -38,4 +36,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
