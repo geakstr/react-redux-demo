@@ -1,4 +1,4 @@
-const users = [
+[
   {
     "photo": "https://randomuser.me/api/portraits/med/men/1.jpg",
     "hired": false,
@@ -168,6 +168,4 @@ const users = [
     "isOnline": true,
     "id": "56f1ad537c743dac0dda89c1"
   }
-];
-
-export default users;
+]

@@ -1,7 +1,7 @@
 import React from "react";
 
-import HireButton from "./hire-button";
-import MoreButton from "./more-button";
+import HireButton from "./../buttons/hire-button";
+import MoreButton from "./../buttons/more-button";
 
 export default function CardHover(props) {
   const {id, username, toggleHire, hired} = props;

@@ -1,4 +1,5 @@
 import { createAction } from "redux-actions";
+import axios from "axios";
 
 import {
   TOGGLE_HIRE,
@@ -6,7 +7,7 @@ import {
   FETCH_USER
 } from "../constants";
 
-import users from "../reducers/users.json";
+const API_URL = "https://raw.githubusercontent.com/geakstr/test-frontendy/master/js/reducers/users.json";
 
 const toggleHireAction = createAction(TOGGLE_HIRE);
 export function toggleHire(userId) {
@@ -24,10 +25,20 @@ export function fetchUsers(url) {
   return async function(dispatch) {
     const state = {};
 
-    users.slice(0).map((user) => {
+    const response = await axios.get(API_URL);
+    const users = JSON.parse(response.data);
+
+    users.forEach((user) => {
       user.online = Math.random() >= 0.5;
       return user;
-    }).forEach((user) => {
+    });
+
+    // Candidates first, hired next
+    const candidates = users.filter((user) => !user.hired);
+    const hired = users.filter((user) => user.hired);
+    const sortedUsers = candidates.concat(hired);
+
+    sortedUsers.forEach((user) => {
       state[user.id] = user;
     });
 
@@ -40,7 +51,10 @@ export function fetchUser(url, userId) {
   return async function(dispatch) {
     const state = {};
 
-    users.slice().map((user) => {
+    const response = await axios.get(API_URL);
+    const users = JSON.parse(response.data);
+
+    users.map((user) => {
       user.online = Math.random() >= 0.5;
       return user;
     }).forEach((user) => {

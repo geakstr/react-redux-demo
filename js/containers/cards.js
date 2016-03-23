@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import HeaderContainer from "./header";
+import FiltersContainer from "./filters";
 import Cards from "../components/cards/";
 import * as actions from "../actions/users";
 
@@ -21,6 +22,7 @@ export default class CardsContainer extends React.Component {
     return (
       <div>
         <HeaderContainer route={this.props.route.path} />
+        <FiltersContainer />
         <Cards users={users} actions={actions} />
       </div>
     );
@@ -28,7 +30,7 @@ export default class CardsContainer extends React.Component {
 }
 
 function mapStateToProps({ users }) {
-  return {users};
+  return {users: users.filtered};
 }
 
 function mapDispatchToProps(dispatch) {

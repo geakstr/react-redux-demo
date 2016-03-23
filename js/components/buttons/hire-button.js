@@ -7,7 +7,7 @@ export default function HireButton(props) {
   const type = hired ? "danger-button" : "ok-button";
 
   return (
-    <button className={`card-hover__button card-hover__button-hire ${type}`} onClick={onClick}>{label}</button>
+    <button className={`button-hire ${type}`} onClick={onClick}>{label}</button>
   );
 }
 

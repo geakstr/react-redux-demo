@@ -1,7 +1,7 @@
 import React from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
-import HireButton from "../cards/hire-button";
+import HireButton from "../buttons/hire-button";
 
 export default function User(props) {
   const {user} = props;
