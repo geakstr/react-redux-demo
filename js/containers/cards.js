@@ -1,7 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
+import Loading from "../components/loading";
+import Error from "../components/error";
 import HeaderContainer from "./header";
 import FiltersContainer from "./filters";
 import Cards from "../components/cards/";
@@ -18,19 +20,25 @@ export default class CardsContainer extends React.Component {
   }
 
   render() {
-    const {users, actions} = this.props;
+    const {users, actions, loading, error} = this.props;
+
     return (
       <div>
-        <HeaderContainer route={this.props.route.path} />
+        <HeaderContainer route={this.props.route.path}/>
         <FiltersContainer />
-        <Cards users={users} actions={actions} />
+        {loading ? <Loading /> : error ? null : <Cards users={users} actions={actions}/>}
+        {error ? <Error message={error} /> : null}
       </div>
     );
   }
 }
 
-function mapStateToProps({ users }) {
-  return {users: users.filtered};
+function mapStateToProps({users}) {
+  return {
+    users: users.filtered,
+    loading: users.loading,
+    error: users.error
+  };
 }
 
 function mapDispatchToProps(dispatch) {

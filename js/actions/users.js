@@ -1,66 +1,116 @@
-import { createAction } from "redux-actions";
+import {createAction} from "redux-actions";
 import axios from "axios";
 
 import {
   TOGGLE_HIRE,
+
   FETCH_USERS,
-  FETCH_USER
+  FETCH_USER,
+
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_FAILURE,
+
+  FETCH_USER_REQUEST,
+  FETCH_USER_FAILURE,
+
+  API_URL
 } from "../constants";
 
-const API_URL = "https://raw.githubusercontent.com/geakstr/test-frontendy/master/js/reducers/users.json";
+
+// Cache users into this after first fetch for some API emulation in future
+let users;
+
+
+const fetchUsersRequestAction = createAction(FETCH_USERS_REQUEST);
+const fetchUsersFailureAction = createAction(FETCH_USERS_FAILURE);
+
+const fetchUserRequestAction = createAction(FETCH_USER_REQUEST);
+const fetchUserFailureAction = createAction(FETCH_USER_FAILURE);
 
 const toggleHireAction = createAction(TOGGLE_HIRE);
+
+const fetchUsersAction = createAction(FETCH_USERS);
+const fetchUserAction = createAction(FETCH_USER);
+
+
 export function toggleHire(userId) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(toggleHireAction(userId));
 
-    // Next two lines only for API emulation
-    const user = users.filter((user) => user.id === userId).shift();
+    // Next lines only for API emulation
+    let user = users.filter((user) => user.id === userId).shift();
     user.hired = !user.hired;
   };
 }
 
-const fetchUsersAction = createAction(FETCH_USERS);
 export function fetchUsers(url) {
-  return async function(dispatch) {
-    const state = {};
+  return async function (dispatch) {
+    try {
+      const state = {};
 
-    const response = await axios.get(API_URL);
-    const users = JSON.parse(response.data);
+      // If first fetch
+      if (!users) {
+        dispatch(fetchUsersRequestAction());
+        // Slow api emulation
+        await sleep(1500);
+        users = await fetchAllUsers();
+      }
 
-    users.forEach((user) => {
-      user.online = Math.random() >= 0.5;
-      return user;
-    });
+      // Candidates first, hired next
+      const candidates = users.filter((user) => !user.hired);
+      const hired = users.filter((user) => user.hired);
+      const sortedUsers = candidates.concat(hired);
 
-    // Candidates first, hired next
-    const candidates = users.filter((user) => !user.hired);
-    const hired = users.filter((user) => user.hired);
-    const sortedUsers = candidates.concat(hired);
+      sortedUsers.forEach((user) => {
+        state[user.id] = user;
+      });
 
-    sortedUsers.forEach((user) => {
-      state[user.id] = user;
-    });
+      dispatch(fetchUsersAction(state));
+    } catch (err) {
+      console.error(err);
 
-    dispatch(fetchUsersAction(state));
+      dispatch(fetchUsersFailureAction("Users fetching failed"));
+    }
   };
 }
 
-const fetchUserAction = createAction(FETCH_USER);
 export function fetchUser(url, userId) {
-  return async function(dispatch) {
-    const state = {};
+  return async function (dispatch) {
+    try {
+      const state = {};
 
-    const response = await axios.get(API_URL);
-    const users = JSON.parse(response.data);
+      // If first fetch
+      if (!users) {
+        dispatch(fetchUserRequestAction());
+        // Slow api emulation
+        await sleep(1500);
+        users = await fetchAllUsers();
+      }
 
-    users.map((user) => {
-      user.online = Math.random() >= 0.5;
-      return user;
-    }).forEach((user) => {
-      state[user.id] = user;
-    });
+      users.forEach((user) => {
+        state[user.id] = user;
+      });
 
-    dispatch(fetchUserAction(state[userId]));
+      dispatch(fetchUserAction(state[userId]));
+    } catch (err) {
+      console.error(err);
+
+      dispatch(fetchUserFailureAction("User fetching failed"));
+    }
   };
+}
+
+function sleep(ms = 0) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+async function fetchAllUsers() {
+  const response = await axios.get(API_URL);
+  const users = response.data;
+
+  users.forEach((user) => {
+    user.online = Math.random() >= 0.5;
+  });
+
+  return users;
 }

@@ -2,23 +2,33 @@ import {handleActions} from "redux-actions";
 
 import {
   TOGGLE_HIRE,
+
   FETCH_USERS,
-  FILTER_USERS
+  FILTER_USERS,
+
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_FAILURE
 } from "../constants";
 
 // Store all users in 'users' and filtered in 'filtered'
 const initialState = {
   users: {},
-  filtered: {}
+  filtered: {},
+  loading: false,
+  error: null
 };
 
 const cardsReducer = handleActions({
+  [FETCH_USERS_REQUEST]: (state, action) => ({...state, loading: true, error: null}),
+  [FETCH_USERS_FAILURE]: (state, action) => ({...state, loading: false, error: action.payload}),
   [FETCH_USERS]: (state, action) => {
     const users = action.payload;
 
     return {
       users,
-      filtered: {...users}
+      filtered: {...users},
+      loading: false,
+      error: null
     }
   },
   [TOGGLE_HIRE]: (state, action) => {
@@ -28,6 +38,7 @@ const cardsReducer = handleActions({
     user.hired = !user.hired;
 
     return {
+      ...state,
       users: {
         ...state.users,
         [id]: user

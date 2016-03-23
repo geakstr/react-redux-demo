@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import Loading from "../components/loading";
+import Error from "../components/error";
 import HeaderContainer from "./header";
 import User from "../components/user/";
 import * as actions from "../actions/users";
@@ -17,17 +19,24 @@ export default class UserContainer extends React.Component {
   }
 
   render() {
+    const {user, actions, loading, error} = this.props;
+
     return (
       <div>
         <HeaderContainer />
-        <User user={this.props.user} toggleHire={this.props.actions.toggleHire} />
+        {loading ? <Loading /> : error ? null : <User user={user} toggleHire={actions.toggleHire} />}
+        {error ? <Error message={error} /> : null}
       </div>
     );
   }
 }
 
 function mapStateToProps({ user }) {
-  return {user};
+  return {
+    user: user.user,
+    loading: user.loading,
+    error: user.error
+  };
 }
 
 function mapDispatchToProps(dispatch) {

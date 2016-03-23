@@ -20,6 +20,30 @@ button {
   padding: 0 44px;
 }
 
+.loading-container, .error-container {
+  margin: 88px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.loading-container {
+  color: #F4F5F6;
+}
+
+.error-container {
+  $color: #FF2B6A;
+
+  color: $color;
+
+  a {
+    color: $color;
+
+    &:hover {
+      color: lighten($color, 10%);
+    }
+  }
+}
+
 .ok-button, .default-button, .danger-button {
   padding: 0 22px;
   color: #F4F5F6;
