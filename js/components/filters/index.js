@@ -8,7 +8,7 @@ export default function Filters(props) {
 
   return (
     <div className="filters wrapper">
-      {filters.map((text) => <Filter key={text} text={text} onDelete={deleteFilter} />)}
+      {filters.map((text) => <Filter key={text} text={text} onDelete={deleteFilter}/>)}
     </div>
   );
 }

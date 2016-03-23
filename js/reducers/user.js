@@ -3,9 +3,8 @@ import {handleActions} from "redux-actions";
 import {
   TOGGLE_HIRE,
 
-  FETCH_USER,
-
   FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE
 } from "../constants";
 
@@ -18,7 +17,7 @@ const initialState = {
 const userReducer = handleActions({
   [FETCH_USER_REQUEST]: (state, action) => ({...state, loading: true, error: null}),
   [FETCH_USER_FAILURE]: (state, action) => ({...state, loading: false, error: action.payload}),
-  [FETCH_USER]: (state, action) => {
+  [FETCH_USER_SUCCESS]: (state, action) => {
     const user = action.payload;
 
     return {

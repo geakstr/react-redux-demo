@@ -7,7 +7,15 @@ import {
 } from "../constants";
 
 const addFiltersAction = createAction(ADD_FILTERS);
+const deleteFilterAction = createAction(DELETE_FILTER);
 const filterUsersAction = createAction(FILTER_USERS);
+
+/**
+ * Add filter and refilter users list
+ *
+ * @param filter
+ * @returns {function()}
+ */
 export function addFilter(filter) {
   return (dispatch, getState) => {
     const filters = filter.split(",").map((x) => x.trim());
@@ -17,7 +25,12 @@ export function addFilter(filter) {
   };
 }
 
-const deleteFilterAction = createAction(DELETE_FILTER);
+
+/**
+ * Delete filter and refilter users list
+ * @param filter
+ * @returns {function()}
+ */
 export function deleteFilter(filter) {
   return (dispatch, getState) => {
     dispatch(deleteFilterAction(filter.trim()));

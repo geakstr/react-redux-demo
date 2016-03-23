@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
 import Filters from "../components/filters";
 import * as actions from "../actions/filters";
@@ -16,13 +16,13 @@ export default class FiltersContainer extends React.Component {
 
     return (
       <div>
-        <Filters filters={filters} actions={actions} />
+        <Filters filters={filters} actions={actions}/>
       </div>
     );
   }
 }
 
-function mapStateToProps({ filters }) {
+function mapStateToProps({filters}) {
   return {filters};
 }
 

@@ -11,8 +11,9 @@ export default function Header(props) {
     <div className="header">
       <div className="header__wrapper wrapper">
         <Logo />
-        {props.route === "/" && !loading ? <SearchWidget addFilter={addFilter} /> : null}
-        <ProfileWidget username="Natali Wurst" photo="https://randomuser.me/api/portraits/med/men/32.jpg" notify={true} />
+        {props.route === "/" && !loading ? <SearchWidget addFilter={addFilter}/> : null}
+        <ProfileWidget username="Natali Wurst" photo="https://randomuser.me/api/portraits/med/men/32.jpg"
+                       notify={true}/>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export default class CardsContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.props.actions.fetchUsers("/");
+    this.props.actions.fetchUsers();
   }
 
   render() {
@@ -27,7 +27,7 @@ export default class CardsContainer extends React.Component {
         <HeaderContainer loading={loading} route={this.props.route.path}/>
         <FiltersContainer />
         {loading ? <Loading /> : error ? null : <Cards users={users} actions={actions}/>}
-        {error ? <Error message={error} /> : null}
+        {error ? <Error message={error}/> : null}
       </div>
     );
   }

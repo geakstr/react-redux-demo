@@ -38,10 +38,12 @@ export default class Card extends React.Component {
     const {toggleHire} = this.props.actions;
 
     return (
-      <div className="cards__item-wrapper" onMouseOver={this.onMouseOver} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-        {isHovering ? <CardHover id={id} username={username} hired={hired} toggleHire={toggleHire.bind(null, id)} /> : null}
-        <CardInfo username={username} spec={spec} online={online} hired={hired} photo={photo} />
-        <CardMeta experience={experience} rate={rate} func={func} />
+      <div className="cards__item-wrapper" onMouseOver={this.onMouseOver} onMouseEnter={this.onMouseEnter}
+           onMouseLeave={this.onMouseLeave}>
+        {isHovering ?
+          <CardHover id={id} username={username} hired={hired} toggleHire={toggleHire.bind(null, id)}/> : null}
+        <CardInfo username={username} spec={spec} online={online} hired={hired} photo={photo}/>
+        <CardMeta experience={experience} rate={rate} func={func}/>
       </div>
     );
   }

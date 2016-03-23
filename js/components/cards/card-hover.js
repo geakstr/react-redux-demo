@@ -13,7 +13,7 @@ export default function CardHover(props) {
       <div className="card-hover__content-wrapper">
         <div>Do you want to {type}</div>
         <div className="card-hover__username">{username}?</div>
-        <div><HireButton onClick={toggleHire} hired={hired} /><MoreButton id={id} /></div>
+        <div><HireButton onClick={toggleHire} hired={hired}/><MoreButton id={id}/></div>
       </div>
     </div>
   );

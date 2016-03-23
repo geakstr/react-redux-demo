@@ -2,11 +2,10 @@ import {handleActions} from "redux-actions";
 
 import {
   TOGGLE_HIRE,
-
-  FETCH_USERS,
   FILTER_USERS,
 
   FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE
 } from "../constants";
 
@@ -21,7 +20,7 @@ const initialState = {
 const cardsReducer = handleActions({
   [FETCH_USERS_REQUEST]: (state, action) => ({...state, loading: true, error: null}),
   [FETCH_USERS_FAILURE]: (state, action) => ({...state, loading: false, error: action.payload}),
-  [FETCH_USERS]: (state, action) => {
+  [FETCH_USERS_SUCCESS]: (state, action) => {
     const users = action.payload;
 
     return {
@@ -71,7 +70,7 @@ const cardsReducer = handleActions({
         for (let fieldIdx = 0, fieldsLen = fields.length; fieldIdx < fieldsLen; fieldIdx++) {
           // Filter contains in field value
           if (~user[fields[fieldIdx]].toLowerCase().indexOf(filters[filterIdx].toLowerCase())) {
-            // Ok, user found, break filters loop
+            // Ok, profile found, break filters loop
             filtered[userId] = {...user};
             break filters;
           }

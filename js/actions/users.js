@@ -5,13 +5,12 @@ import {
   TOGGLE_HIRE,
   CLEAR_FILTERS,
 
-  FETCH_USERS,
-  FETCH_USER,
-
   FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
 
   FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
   FETCH_USER_FAILURE,
 
   API_URL
@@ -22,31 +21,43 @@ import {
 let users;
 
 
+const toggleHireAction = createAction(TOGGLE_HIRE);
+
 const fetchUsersRequestAction = createAction(FETCH_USERS_REQUEST);
+const fetchUsersSuccessAction = createAction(FETCH_USERS_SUCCESS);
 const fetchUsersFailureAction = createAction(FETCH_USERS_FAILURE);
 
 const fetchUserRequestAction = createAction(FETCH_USER_REQUEST);
+const fetchUserSuccessAction = createAction(FETCH_USER_SUCCESS);
 const fetchUserFailureAction = createAction(FETCH_USER_FAILURE);
-
-const toggleHireAction = createAction(TOGGLE_HIRE);
-
-const fetchUsersAction = createAction(FETCH_USERS);
-const fetchUserAction = createAction(FETCH_USER);
 
 const clearFiltersAction = createAction(CLEAR_FILTERS);
 
 
+/**
+ * Toggle profile hire status
+ *
+ * @param userId
+ * @returns {function()}
+ */
 export function toggleHire(userId) {
   return (dispatch, getState) => {
-    dispatch(toggleHireAction(userId));
+    // Next condition only for API emulation
+    if (users) {
+      let user = users.filter((user) => user.id === userId).shift();
+      user.hired = !user.hired;
+    }
 
-    // Next lines only for API emulation
-    let user = users.filter((user) => user.id === userId).shift();
-    user.hired = !user.hired;
+    return dispatch(toggleHireAction(userId));
   };
 }
 
-export function fetchUsers(url) {
+/**
+ * Fetch users list from api
+ *
+ * @returns {Function}
+ */
+export function fetchUsers() {
   return async function (dispatch) {
     try {
       const state = {};
@@ -67,10 +78,10 @@ export function fetchUsers(url) {
       const sortedUsers = candidates.concat(hired);
 
       sortedUsers.forEach((user) => {
-        state[user.id] = user;
+        state[user.id] = {...user};
       });
 
-      dispatch(fetchUsersAction(state));
+      dispatch(fetchUsersSuccessAction(state));
     } catch (err) {
       console.error(err);
 
@@ -79,7 +90,13 @@ export function fetchUsers(url) {
   };
 }
 
-export function fetchUser(url, userId) {
+/**
+ * Fetch profile by id from api
+ *
+ * @param userId
+ * @returns {Function}
+ */
+export function fetchUser(userId) {
   return async function (dispatch) {
     try {
       const state = {};
@@ -95,16 +112,21 @@ export function fetchUser(url, userId) {
       }
 
       users.forEach((user) => {
-        state[user.id] = user;
+        state[user.id] = {...user};
       });
 
-      dispatch(fetchUserAction(state[userId]));
+      dispatch(fetchUserSuccessAction(state[userId]));
     } catch (err) {
       console.error(err);
 
       dispatch(fetchUserFailureAction("User fetching failed"));
     }
   };
+}
+
+// Only for testing environment
+export function clearCache() {
+  users = undefined;
 }
 
 function sleep(ms = 0) {
@@ -115,8 +137,8 @@ async function fetchAllUsers() {
   const response = await axios.get(API_URL);
   const users = response.data;
 
-  users.forEach((user) => {
-    user.online = Math.random() >= 0.5;
+  users.forEach((user, i) => {
+    user.online = (i % 2 === 0);
   });
 
   return users;

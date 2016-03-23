@@ -6,8 +6,8 @@ import Name from "./name";
 export default function ProfileWidget(props) {
   return (
     <div className="header__profile-widget profile-widget">
-      <Photo url={props.photo} notify={props.notify} />
-      <Name username={props.username} />
+      <Photo url={props.photo} notify={props.notify}/>
+      <Name username={props.username}/>
     </div>
   );
 }
