@@ -65,3 +65,29 @@
   line-height: 22px;
   padding-left: 173px;
 }
+
+@media all and (max-width: 800px) {
+  .user__card {
+    float: none;
+    text-align: center;
+  }
+
+  .user__photo {
+    margin: 0 auto;
+  }
+
+  .user__content {
+    padding: 11px;
+  }
+
+  .user__info {
+    display: block;
+    margin: 0 auto;
+    padding: 11px 0;
+    text-align: center;
+  }
+
+  .user_description {
+    padding-left: 0;
+  }
+}

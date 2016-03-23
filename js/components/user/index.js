@@ -5,7 +5,7 @@ import HireButton from "../buttons/hire-button";
 
 export default function User(props) {
   const {user} = props;
-  const {id, username, photo, spec, experience, rate, func, online, hired} = user;
+  const {id, username, photo, spec, email, experience, type, rate, func, online, hired} = user;
 
   const toggleHire = props.toggleHire.bind(null, id);
 
@@ -18,9 +18,9 @@ export default function User(props) {
             <HireButton onClick={toggleHire} hired={hired} />
           </div>
           <div className="user__info">
-            <div className="user__username">{username} {online ? <i className="user__online">•</i> : null}</div>
+            <div className="user__username">{username} ({email}) {online ? <i className="user__online">•</i> : null}</div>
             <div className="user__spec">{spec}</div>
-            <div className="user__meta">Experience: {experience} years; Rate: {rate}%; Function: {func}</div>
+            <div className="user__meta">Experience: {experience} years; Rate: {rate}%; Function: {func}; Type: {type}</div>
           </div>
           <div className="user_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
         </div>

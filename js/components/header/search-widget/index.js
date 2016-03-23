@@ -23,7 +23,7 @@ export default class SearchWidget extends React.Component {
 
     return (
       <div className="header__search-widget search-widget">
-        {filtering ? <SearchField onEscape={onFilter} addFilter={addFilter} /> : <span><FindButton onClick={onFilter} /> or <InviteButton /></span>}
+        {filtering ? <SearchField onEscape={onFilter} addFilter={addFilter} /> : <span><FindButton onClick={onFilter} />or <InviteButton /></span>}
       </div>
     );
   }

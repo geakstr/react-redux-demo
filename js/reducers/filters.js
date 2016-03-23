@@ -2,7 +2,8 @@ import {handleActions} from "redux-actions";
 
 import {
   ADD_FILTERS,
-  DELETE_FILTER
+  DELETE_FILTER,
+  CLEAR_FILTERS
 } from "../constants";
 
 const initialState = [];
@@ -26,7 +27,8 @@ const filtersReducer = handleActions({
     if (i === -1) return state;
 
     return state.slice(0, i).concat(state.slice(i + 1));
-  }
+  },
+  [CLEAR_FILTERS]: (state, action) => []
 }, initialState);
 
 export default filtersReducer;

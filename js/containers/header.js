@@ -10,10 +10,10 @@ export default class HeaderContainer extends React.Component {
   };
 
   render() {
-    const {addFilter} = this.props;
+    const {addFilter, loading} = this.props;
 
     return (
-      <Header route={this.props.route} addFilter={addFilter}/>
+      <Header loading={loading} route={this.props.route} addFilter={addFilter}/>
     );
   }
 }

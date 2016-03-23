@@ -20,6 +20,12 @@ button {
   padding: 0 44px;
 }
 
+@media all and (max-width: 800px) {
+  .wrapper {
+    padding: 0 11px;
+  }
+}
+
 .loading-container, .error-container {
   margin: 88px 0;
   font-size: 20px;

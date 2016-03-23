@@ -3,6 +3,7 @@ import axios from "axios";
 
 import {
   TOGGLE_HIRE,
+  CLEAR_FILTERS,
 
   FETCH_USERS,
   FETCH_USER,
@@ -32,6 +33,8 @@ const toggleHireAction = createAction(TOGGLE_HIRE);
 const fetchUsersAction = createAction(FETCH_USERS);
 const fetchUserAction = createAction(FETCH_USER);
 
+const clearFiltersAction = createAction(CLEAR_FILTERS);
+
 
 export function toggleHire(userId) {
   return (dispatch, getState) => {
@@ -47,6 +50,8 @@ export function fetchUsers(url) {
   return async function (dispatch) {
     try {
       const state = {};
+
+      dispatch(clearFiltersAction());
 
       // If first fetch
       if (!users) {
@@ -78,6 +83,8 @@ export function fetchUser(url, userId) {
   return async function (dispatch) {
     try {
       const state = {};
+
+      dispatch(clearFiltersAction());
 
       // If first fetch
       if (!users) {

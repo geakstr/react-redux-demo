@@ -4,6 +4,13 @@
   background-size: 8px 8px;
   background-repeat: no-repeat;
   background-position: right center;
+  cursor: pointer;
+
+  &:hover {
+    .profile-widget__name {
+      color: lighten(#E3E8EA, 10%);
+    }
+  }
 }
 
 .profile-widget_photo-wrapper {

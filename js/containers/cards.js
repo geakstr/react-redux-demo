@@ -24,7 +24,7 @@ export default class CardsContainer extends React.Component {
 
     return (
       <div>
-        <HeaderContainer route={this.props.route.path}/>
+        <HeaderContainer loading={loading} route={this.props.route.path}/>
         <FiltersContainer />
         {loading ? <Loading /> : error ? null : <Cards users={users} actions={actions}/>}
         {error ? <Error message={error} /> : null}
