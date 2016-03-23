@@ -5,7 +5,7 @@ import Header from "../components/header/";
 export default class HeaderContainer extends React.Component {
   render() {
     return (
-      <Header />
+      <Header route={this.props.route} />
     );
   }
 }

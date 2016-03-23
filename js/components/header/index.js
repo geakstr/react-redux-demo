@@ -9,7 +9,7 @@ export default function Header(props) {
     <div className="header">
       <div className="header__wrapper wrapper">
         <Logo />
-        <SearchWidget />
+        {props.route === "/" ? <SearchWidget /> : null}
         <ProfileWidget username="Natali Wurst" photo="https://unsplash.it/50?image=1" notify={true} />
       </div>
     </div>

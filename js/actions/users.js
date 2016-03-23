@@ -24,7 +24,7 @@ export function fetchUsers(url) {
   return async function(dispatch) {
     const state = {};
 
-    users.slice(0, 5).map((user) => {
+    users.slice(0).map((user) => {
       user.online = Math.random() >= 0.5;
       return user;
     }).forEach((user) => {
@@ -40,7 +40,7 @@ export function fetchUser(url, userId) {
   return async function(dispatch) {
     const state = {};
 
-    users.slice(0, 5).map((user) => {
+    users.slice().map((user) => {
       user.online = Math.random() >= 0.5;
       return user;
     }).forEach((user) => {

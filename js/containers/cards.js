@@ -18,10 +18,9 @@ export default class CardsContainer extends React.Component {
 
   render() {
     const {users, actions} = this.props;
-
     return (
       <div>
-        <HeaderContainer />
+        <HeaderContainer route={this.props.route.path} />
         <Cards users={users} actions={actions} />
       </div>
     );

@@ -5,7 +5,7 @@ import HireButton from "../cards/hire-button";
 
 export default function User(props) {
   const {user} = props;
-  const {id, username, photo, spec, experience, rate, func, hired} = user;
+  const {id, username, photo, spec, experience, rate, func, online, hired} = user;
 
   const toggleHire = props.toggleHire.bind(null, id);
 
@@ -18,7 +18,7 @@ export default function User(props) {
             <HireButton onClick={toggleHire} hired={hired} />
           </div>
           <div className="user__info">
-            <div className="user__username">{username}</div>
+            <div className="user__username">{username} {online ? <i className="user__online">•</i> : null}</div>
             <div className="user__spec">{spec}</div>
             <div className="user__meta">Experience: {experience} years; Rate: {rate}%; Function: {func}</div>
           </div>

@@ -7,13 +7,23 @@ export default function Cards(props) {
   const {users, actions} = props;
 
   const userIds = Object.keys(users);
+  const candidates = userIds.filter((userId) => !users[userId].hired);
+  const hired = userIds.filter((userId) => users[userId].hired);
 
   return (
     <div className="cards wrapper">
       <ReactCSSTransitionGroup transitionName="appear-animation" transitionAppear={true} transitionAppearTimeout={500} transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-        <div className="cards__counter">Candidates: <span className="cards__counter-value">{userIds.length}</span></div>
+        <div className="cards__counter">Candidates: <span className="cards__counter-value">{candidates.length}</span></div>
         <div className="cards__items-wrapper">
-          {userIds.map((userId) => {
+          {candidates.map((userId) => {
+            const user = users[userId];
+
+            return <Card key={user.id} user={user} actions={actions} />;
+          })}
+        </div>
+        <div className="cards__counter">Hired: <span className="cards__counter-value">{hired.length}</span></div>
+        <div className="cards__items-wrapper">
+          {hired.map((userId) => {
             const user = users[userId];
 
             return <Card key={user.id} user={user} actions={actions} />;
