@@ -50,6 +50,9 @@ module.exports = {
   },
   postcss: [autoprefixer({ browsers: ["last 2 versions"] })],
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: true
+    })
   ]
 }

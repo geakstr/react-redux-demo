@@ -75,6 +75,9 @@ module.exports = {
       inject: false,
       chunks: ["app"]
     }),
-    new ExtractTextPlugin("/assets/style.css")
+    new ExtractTextPlugin("/assets/style.css"),
+    new webpack.DefinePlugin({
+      DEVELOPMENT: false
+    })
   ]
 };

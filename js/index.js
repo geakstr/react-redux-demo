@@ -6,7 +6,9 @@ import {Provider} from "react-redux";
 import {Router, Redirect, Route, browserHistory} from "react-router";
 import {syncHistoryWithStore} from "react-router-redux";
 
-import "../sass/style.scss";
+if (DEVELOPMENT) {
+  require("../sass/style.scss");
+}
 
 import createStore from "./store";
 
