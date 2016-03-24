@@ -6,7 +6,7 @@ var root = path.join(__dirname, "../");
 
 var paths = {
   root: root,
-  base: path.join(root, "html"),
+  base: path.join(root, "html/dev"),
   www: path.join(root, "www"),
   js: path.join(root, "js"),
   sass: path.join(root, "sass"),

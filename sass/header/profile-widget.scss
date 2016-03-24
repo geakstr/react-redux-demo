@@ -1,9 +1,4 @@
 .profile-widget {
-  padding-right: 14px;
-  background-image: url("../imgs/down-arrow.svg");
-  background-size: 8px 8px;
-  background-repeat: no-repeat;
-  background-position: right center;
   cursor: pointer;
 
   &:hover {
@@ -41,4 +36,9 @@
 .profile-widget__name {
   margin-left: 11px;
   color: #E3E8EA;
+  padding-right: 14px;
+  background-image: url("../imgs/down-arrow.svg");
+  background-size: 8px 8px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
